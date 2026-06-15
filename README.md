@@ -24,6 +24,12 @@ A conversational agent that can read any PDF and answer questions about it — u
 
 ## How Ollama Works Locally
 
+**Why Ollama?**
+
+You can download Gemma's weights directly from HuggingFace, but raw model weights are just binary files — they don't run on their own. To actually perform inference you need a runtime that handles tokenization, memory layout, attention computation, sampling, and context management. The standard Python path is `transformers` + PyTorch, but on a CPU that stack is slow, heavyweight, and requires several gigabytes of additional dependencies. Ollama takes a different approach: it packages models in GGUF format and runs them through `llama.cpp`, a highly optimized C++ inference engine built specifically for quantized CPU inference. On an Intel CPU with AVX2, `llama.cpp` runs inference several times faster than an equivalent PyTorch setup. Ollama adds model management (pull, list, remove), automatic CPU backend selection, a keep-alive cache, and a clean HTTP API on top — reducing what would be a complex multi-step setup to a single `ollama pull` command. From the notebook's perspective, all of that complexity is hidden behind one HTTP call.
+
+---
+
 Ollama is a local model runtime that lets you download and run open-source LLMs entirely on your own machine — no cloud account, no API key, no data leaving your device. Think of it like Docker, but for AI models: it pulls a model once, manages it on disk, and serves it through a lightweight HTTP API bound exclusively to `localhost`.
 
 ---
