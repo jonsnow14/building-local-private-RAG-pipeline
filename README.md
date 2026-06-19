@@ -1,4 +1,4 @@
-# RAG Learning Resources
+# Building Local Private RAG Pipeline
 
 A hands-on notebook for building a **local, private RAG (Retrieval-Augmented Generation)** pipeline using open-source tools — no API keys, no data sent to the cloud.
 
